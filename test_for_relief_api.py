@@ -2,7 +2,7 @@
 
 import requests
 
-APPNAME = "RakshitTwitterapiBot-1ZPbednY"
+APPNAME = "elooooo"
 
 def test_api():
     print("\n🧪 Testing ReliefWeb API...")
