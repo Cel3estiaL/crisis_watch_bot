@@ -1,5 +1,3 @@
-"""ReliefWeb API client"""
-
 import requests
 from typing import Optional, List, Dict
 from src.config import Config
@@ -13,7 +11,7 @@ def fetch_reports(
 ) -> List[Dict]:
     """
     Fetch latest reports from ReliefWeb API
-    English only, all report types
+    English only, with optional format filtering
     """
     
     url = f"{Config.RELIEFWEB_API_BASE}/reports"
@@ -22,8 +20,6 @@ def fetch_reports(
         "appname": appname,
         "limit": min(limit, 1000),
         "preset": "latest",
-        "filter[field]": "language.code",
-        "filter[value]": "en",
         "fields[include][]": [
             "title",
             "body",
@@ -38,14 +34,41 @@ def fetch_reports(
         ]
     }
     
+    # Build filter conditions
+    conditions = []
+    condition_index = 0
+    
+    # Always filter by English
+    conditions.append({
+        "field": "language.code",
+        "value": "en"
+    })
+    
+    # Add country filter if provided
     if country:
-        params["filter[conditions][0][field]"] = "language.code"
-        params["filter[conditions][0][value]"] = "en"
-        params["filter[conditions][1][field]"] = "country"
-        params["filter[conditions][1][value]"] = country
+        conditions.append({
+            "field": "country",
+            "value": country
+        })
+    
+    # Add format filter if provided
+    if report_formats:
+        conditions.append({
+            "field": "format.name",
+            "value": report_formats  # API accepts list directly
+        })
+    
+    # Build params based on number of conditions
+    if len(conditions) == 1:
+        # Single condition (just language)
+        params["filter[field]"] = conditions[0]["field"]
+        params["filter[value]"] = conditions[0]["value"]
+    else:
+        # Multiple conditions - use operator AND
         params["filter[operator]"] = "AND"
-        del params["filter[field]"]
-        del params["filter[value]"]
+        for i, condition in enumerate(conditions):
+            params[f"filter[conditions][{i}][field]"] = condition["field"]
+            params[f"filter[conditions][{i}][value]"] = condition["value"]
     
     try:
         response = requests.get(url, params=params, timeout=Config.API_TIMEOUT)
@@ -103,3 +126,4 @@ def fetch_reports(
     except Exception as e:
         print(f"❌ Error fetching reports: {e}")
         return []
+
