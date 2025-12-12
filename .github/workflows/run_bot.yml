@@ -1,4 +1,4 @@
-name: Run ReliefWeb Bot
+name: Run Crisis Watch Bot
 
 on:
   schedule:
