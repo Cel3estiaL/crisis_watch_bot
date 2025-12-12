@@ -1,0 +1,34 @@
+# Secrets
+.env
+*.env
+.env.local
+
+# Python virtual environment - DON'T COMMIT!
+venv/
+env/
+ENV/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
