@@ -1,4 +1,4 @@
-# 🌍 ReliefWeb Reports Bot
+# 🌍 Crisis Watch Bot
 
 Automated bot that posts humanitarian reports from ReliefWeb to Twitter every 3 hours.
 
@@ -22,8 +22,8 @@ Automated bot that posts humanitarian reports from ReliefWeb to Twitter every 3 
 # 📦 Local Setup
 
 Clone repo
-git clone https://github.com/yourusername/reliefweb-bot.git
-cd reliefweb-bot
+git clone https://github.com/yourusername/crisis_watch-bot.git
+cd crisis_watch-bot
 
 Create virtual environment
 python -m venv venv
