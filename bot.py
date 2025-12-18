@@ -44,7 +44,18 @@ def main():
         appname=Config.RELIEFWEB_APPNAME,
         limit=Config.FETCH_LIMIT,
         country=Config.FILTER_COUNTRY,
-        report_formats=["News and Press Release", "Map", "Infographic", "UN Document"]
+        report_formats=["Analysis",
+    "Appeal",
+    "Assessment",
+    "Evaluation and Lessons Learned",
+    "Infographic",
+    "Interactive",
+    "Manual and Guideline",
+    "Map",
+    "News and Press Release",
+    "Other",
+    "Policy and Guidance",
+    "Situation Report"]
     )
     #reports = fetch_reports(
      #   appname=Config.RELIEFWEB_APPNAME,
