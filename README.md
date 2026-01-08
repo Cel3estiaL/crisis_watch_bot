@@ -20,3 +20,4 @@ Automated bot that posts humanitarian reports from ReliefWeb to Twitter every 3 
 - Supabase - PostgreSQL database
 - Twitter API v2 - OAuth 1.0a
 - GitHub Actions - Automated scheduling
+- Postman - Testing
